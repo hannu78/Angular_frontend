@@ -1,0 +1,77 @@
+/* Use element selector to select all p elements for this style */
+
+p{
+    color:blue;
+    font-size: 20px;
+}
+
+ div {
+    color:darkblue
+}
+/* Ylikirjoitetaan selaimen oletusmääritys input-kentälle */
+input {
+    background-color:papayawhip;
+} 
+
+.fancy{
+    color: green;
+    border: 2px;
+    background-color: red;
+    border-radius: 8px;
+}
+
+
+/* Use class selector to define style for elements */
+.mun_keksima{
+    background-color: aquamarine;
+}
+
+
+
+/* Use id selector to define style */
+/* There can't be two elements with same id because it should be unique */
+#joku_tyyli {
+    margin: 100px;
+    
+}
+
+/* Tyylimääritys login-ikkunalle */
+.login_container {
+    width: 500px;
+    margin: 20px auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: skyblue;
+    padding: 10px;
+}
+
+# Selectors
+# div ja sen 1. child
+div:first-child {
+    
+}
+
+# p divin sisällä
+div p {
+    
+}
+
+# div ja sen child p
+div > p {
+    
+}
+
+# Kaikki
+
+*{
+    
+}
+
+# Luokka jonka tyylimääritys on fancy
+[class="fancy"]{
+    
+}
+
+# Attribuutin arvo alkaa https
+[attribute^="https"]
+

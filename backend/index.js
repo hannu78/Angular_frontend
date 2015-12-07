@@ -11,6 +11,7 @@ var user = require("./modules/user");
 var database = require("./modules/database");
 //====================MIDDLEWARES==================================================
 // body-parser.json() middleware parses the json object from http POST request
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(function (req, res, next) {
     next();

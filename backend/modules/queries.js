@@ -86,30 +86,29 @@ exports.searchByName = function (req, res) {
     //}).sort({name: 1});
 }
 
-// Lisätään uusi käyttäjä
+// Add new user
 exports.registerFriend = function (req, res) {
     var friend = new db.Friends(req.body);
     friend.save(function (err) {
         if (err) {
-            res.send({status: "Kirjautuminen epäonnistui. Käytä toista käyttäjätunnusta."});
+            res.send({status: "Registration failed. Please use another username."});
         } else {
-            res.send({status: "Rekisteröityminen onnistui"});
+            res.send({status: "Registration successful!"});
         }
     });
 }
-// tarkistetaan onko käyttäjätunnus ja salasana jo olemassa
+// check if username and password exist
 exports.loginFriend = function (req, res) {
+
     db.Friends.find({username: req.body.username, password: req.body.password}, function (err, data) {
         if (err) {
-            res.send({status: err.message});
+            res.status(502).send({status: err.message});
         } else {
-            // data.length =< 0 tarkoittaa väärää username tai passwordia
+            // data.length =< 0 means wrong username or password
             if (data.length > 0) {
-                //console.log("Login ok!" +data);
-                res.send({status: "Ok"});
+                res.status(299).send({status: "Ok"});
             } else {
-                //console.log("Login feilas!");
-                res.send({status: "Väärä käyttäjätunnus tai salasana"});
+                res.status(401).send({status: "Wrong username or password"});
             }
         }
     });

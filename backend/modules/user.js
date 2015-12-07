@@ -22,6 +22,7 @@ router.get("/:username", function (req, res) {
 // POST-requestien käsittely /friends-kontekstissa
 // Tämä router käsittelee login-requestit
 router.post("/login", function (req, res) {
+    //console.log("Router toimii!");
     db.loginFriend(req, res);
 });
 // Tämä router käsittelee register-requestit

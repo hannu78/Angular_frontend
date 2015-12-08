@@ -1,2 +1,22 @@
 <h1>Here is the table data of your friends</h1>
 
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Age</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat='person in friendData'>
+            <td>{{person.name}}</td>
+            <td>{{person.address}}</td>
+            <td>{{person.age}}</td>
+            <td>{{person.email}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="/logout">Logout</a>

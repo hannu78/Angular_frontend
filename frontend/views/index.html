@@ -6,18 +6,23 @@
         <title>Angular Frontend</title>
         <link href = "/frontend/css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <link href = "/frontend/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet">
+        <link href = "/frontend/css/angular-flash.min.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <!--This is a placeholder for our views in this app-->
         <div ng-view>
             
         </div>
+        <div flash-message="5000" ></div>
         <script src = "/frontend/lib/jquery-2.1.4.min.js"></script>
         <script src = "/frontend/lib/angular.min.js"></script>
-        <script src = "/frontend/lib/angular-route.min.js">s</script>
-        <script src = "/frontend/lib/angular-resource.min.js">s</script>
+        <script src = "/frontend/lib/angular-route.min.js"></script>
+        <script src = "/frontend/lib/angular-resource.min.js"></script>
+        <script src = "/frontend/lib/angular-flash.min.js"></script>
         <script src = "/frontend/modules/mainModule.js"></script>
         <script src = "/frontend/controllers/loginController.js"></script>
         <script src = "/frontend/factories/loginFactory.js"></script>
+        <script src = "/frontend/controllers/friendDataController.js"></script>
+        <script src = "/frontend/factories/friendDataFactory.js"></script>
     </body>
 </html>

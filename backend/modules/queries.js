@@ -91,34 +91,53 @@ exports.registerFriend = function (req, res) {
     var friend = new db.Friends(req.body);
     friend.save(function (err) {
         if (err) {
-            res.send({status: "Registration failed. Please use another username."});
+            res.status(502).send({status: "Registration failed. Please use another username."});
         } else {
-            res.send({status: "Registration successful!"});
+            res.status(200).send({status: "Registration successful!"});
         }
     });
 }
 // check if username and password exist
-exports.loginFriend = function (req, res) {
-
-    db.Friends.find({username: req.body.username, password: req.body.password}, function (err, data) {
-        if (err) {
-            res.status(502).send({status: err.message});
-        } else {
-            // data.length =< 0 means wrong username or password
-            if (data.length > 0) {
-                res.status(299).send({status: "Ok"});
-            } else {
-                res.status(401).send({status: "Wrong username or password"});
+exports.loginFriend = function(req,res){
+    
+    var searchObject = {
+        username:req.body.username,
+        password:req.body.password
+    }
+    //console.log(searchObject);
+    //console.log(req.body);
+    db.Friends.findOne(searchObject,function(err,data){
+        
+        if(err){
+            
+            res.status(502).send({status:err.message});
+            
+        }else{
+            console.log(data);
+            //=< 0 means wrong username or password
+            if(data){
+                req.session.username = data.username;
+                res.status(200).send({status:"Ok"});
             }
+            else{
+                res.status(401).send({status:"Wrong username or password"});
+            }
+            
         }
     });
 }
-// Haetaan käyttäjän ystävät friends-collectionista
+
+// GEt user's friends from friends collection
 exports.getFriendsByUsername = function (req, res) {
-    var uname = req.params.username.split("=")[1];
-    //console.log("User: " + uname);
-    db.Friends.find({username: uname}).populate("friends").exec(function (err, data) {
-        //console.log("löyty: " + data[0]);
-        res.send(data[0].friends);
+    //var uname = req.params.username.split("=")[1];
+    db.Friends.findOne({username: req.session.username}).
+        populate('friends').exec(function (err, data) {
+        console.log(err);
+        if (data) {
+            console.log("Here: " + data.friends);
+            res.send(data.friends); 
+        } else {
+            res.redirect('/');
+        }
     });
 }

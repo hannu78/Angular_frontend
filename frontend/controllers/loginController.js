@@ -38,6 +38,7 @@ main_module.controller('controllerLogin', function ($scope, loginFactory, $locat
         var result = loginFactory.startRegister(info);
         result.then (function (data) {
             console.log("Registration succesful!");
+            // How to add Flash alert here?
             alert( "Registration succesful!" );
             $location.path('/list').replace();
         }, function(data) {

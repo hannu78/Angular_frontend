@@ -4,7 +4,7 @@
 // First argument is the name of the controller. This is important as this
 // is used when the controller is used in a view
 // $scope object is the glue between the view and the controller
-main_module.controller('controllerLogin', function ($scope, loginFactory, $location) {
+main_module.controller('controllerLogin', function ($scope, loginFactory, $location, Flash) {
     
     //loginClicked gets called when login button is pressed in partial_login
     $scope.loginClicked = function () {
@@ -19,11 +19,13 @@ main_module.controller('controllerLogin', function ($scope, loginFactory, $locat
            // Code inside this block will be called when success response from server 
            // is received
             console.log("Success!");
+            loginFactory.username = $scope.user;
             // location.path does not work for me, so location.path('/list').replace() is needed here
             // See http://stackoverflow.com/questions/11784656/angularjs-location-not-changing-the-path
             $location.path('/list').replace();
         }, function(data) {
             console.log ("Fail!");
+            Flash.create('danger', 'Wrong user name or password given', 'custom-class'); 
             $('.error').text('Wrong username or password.');             
         });
     }
@@ -38,11 +40,11 @@ main_module.controller('controllerLogin', function ($scope, loginFactory, $locat
         var result = loginFactory.startRegister(info);
         result.then (function (data) {
             console.log("Registration succesful!");
-            // How to add Flash alert here?
-            alert( "Registration succesful!" );
+            Flash.create('success', "Registration succesful!", 'custom-class');
             $location.path('/list').replace();
         }, function(data) {
             console.log("Registration failed.");
+            Flash.create('danger', 'Registration failed, username already exists. Please use another username.', 'custom-class'); 
             $('.error').text('Registration unsuccesful, please try again.');
         });
     }

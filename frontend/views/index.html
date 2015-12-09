@@ -7,13 +7,11 @@
         <link href = "/frontend/css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <link href = "/frontend/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet">
         <link href = "/frontend/css/angular-flash.min.css" type="text/css" rel="stylesheet">
+        <link href = "/frontend/css/style.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <!--This is a placeholder for our views in this app-->
-        <div ng-view>
-            
-        </div>
-        <div flash-message="5000" ></div>
+        <div ng-view></div>
         <script src = "/frontend/lib/jquery-2.1.4.min.js"></script>
         <script src = "/frontend/lib/angular.min.js"></script>
         <script src = "/frontend/lib/angular-route.min.js"></script>
@@ -24,5 +22,11 @@
         <script src = "/frontend/factories/loginFactory.js"></script>
         <script src = "/frontend/controllers/friendDataController.js"></script>
         <script src = "/frontend/factories/friendDataFactory.js"></script>
+        <script src = "/frontend/controllers/editController.js"></script>
+        <script src = "/frontend/controllers/addController.js"></script>
+        <script src = "/frontend/controllers/deleteController.js"></script>
     </body>
+    <footer data-dummy="">
+            <p>Copyright 2015 by Hannu Lisko</p>    
+    </footer>
 </html>

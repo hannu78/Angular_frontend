@@ -1,0 +1,16 @@
+<head>
+    <meta charset = "utf-8">
+    <link href = "/frontend/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href = "/frontend/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet">
+    <link href = "/frontend/css/angular-flash.min.css" type="text/css" rel="stylesheet">
+    <link href = "/frontend/css/style.css" type="text/css" rel="stylesheet">
+</head>
+
+<p class = "error"></p>
+<form class='login_container'>
+    <input class="form-control" type = "text" placeholder = "username" ng-model = "user"><br/>
+    <input class="form-control" type = "password" placeholder = "password" ng-model = "pass"><br/>
+    <input class="btn btn-default" type = "button" value = "Login" ng-click = "loginClicked()">
+    <input class="btn btn-default" type = "button" value = "Register" ng-click = "registerClicked()">
+</form>
+<div flash-message="5000" ></div>

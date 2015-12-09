@@ -1,10 +1,5 @@
 <div class= "table_container">
-    <h1>Your friends</h1>
-    <p>Search friends</p>
-    <input type="search" class="form-control" value="Search" ng-model='search_term'/><br/>
-    <button class="btn btn-default" value="Search" ng-click='search()'>
-            Search
-    </button>
+    <h1>Delete friends</h1>
     <p>To edit or delete entries, click a row.</p>
     <table class = 'table table-hover'>
         <thead>
@@ -21,16 +16,9 @@
                 <td>{{person.address}}</td>
                 <td>{{person.age}}</td>
                 <td>{{person.email}}</td>
+                <td><input type="checkbox" ng-click='addToDelete($event,$index,person._id)'></td>
             </tr>
         </tbody>
     </table>
+    <input class = "btn btn-default" type = "button" value = "Delete selected" ng-click="sendToDelete()">
 </div>
-<br/><br/>
-
-<p> User: <input type = text ng-model="user"> <br/><br/>
-    <a href="#/add">Add a friend</a> - 
-    <a href="#/delete">Delete friends</a> - 
-    <a href="/logout">Logout</a><br/><br/>
-</p>
-
-

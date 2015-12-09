@@ -13,35 +13,50 @@ exports.getAllPersons = function (req, res) {
     });
 }
 // saveNewPerson tallettaa uuden henkilön tiedot person-kokoelmaan
-exports.saveNewPerson = function (req, res) {
+exports.saveNewPerson = function(req,res){
+    
+    
     var personTemp = new db.Person(req.body);
-    //Tallennetaan kantaan
-    personTemp.save(function (err, ok) {
-        if (err) {
-            res.send(err.message);
-        } else {
-            db.Friends.update({username: req.body.user}, 
-                              {$push:{'friends': personTemp._id}},
-                              function(err, model){
-                      
-            res.send("Friend added");
-            });
-        }
+    //Save it to database
+    personTemp.save(function(err,newData){
+        
+        db.Friends.update({username:req.session.username},
+                          {$push:{'friends':personTemp._id}},
+                          function(err,model){
+            
+            if(err){
+                res.status(500).json({message:'Fail'});
+            }else{
+                
+                res.status(200).json({data:newData});
+            }
+        });
+     
     });
 }
 // Poistetaan henkilön tiedot kannasta
 exports.deletePerson = function (req, res) {
     //req.params.id on muotoa id=xxxx, jolloin pitää leikata id= pois
-    var id = req.params.id.split("=")[1];
-    db.Person.remove({_id: id}, function (err) {
+    //var id = req.params.id.split("=")[1];
+    var toDelete = [];
+    if(req.query.forDelete instanceof Array)
+        toDelete = req.query.forDelete;
+    else{
+        
+       toDelete.push(req.query.forDelete); 
+    }
+    db.Person.remove({_id:{$in:toDelete}}, function (err, data) {
         if (err) {
-            res.send(err.message);
+            res.status(500).send(err.message);
         } else {
-            res.send("Person removed succesfully!");
+            
             // Poista henkilö myös käyttäjän friends-listalta
-            db.Friends.update({username: req.body.user},
-                              {$pull:{'friends': id}},
-                              function(err, model) {
+            db.Friends.update({username:req.session.kayttaja},{$pull:{'friends':{$in:toDelete}}},function(err,data){
+            if (err) {
+                res.status(500).send({message:err.message});
+            } else {
+                res.status(200).send("Person removed succesfully!");
+            }
                 
             });
             //res.redirect('/');
@@ -67,23 +82,16 @@ exports.updatePerson = function (req, res) {
 }
 
 // Etsitään nimen perusteella kaikki dokumentit joiden name sisältää nimen
-exports.searchByName = function (req, res) {
-    var name = req.params.name.split("=")[1];
-    var uname = req.params.username.split("=")[1];
-   // console.log("NIMI: " + name);
-    //console.log("USER: " + uname);
-    //db.Person.find({name: {'$regex': name, '$options': 'i'}}, function (err, data) {
-    db.Friends.find({username:uname}).
-        populate({path:'friends',match:{name:{'$regex': name, '$options':'i'}}}).
+exports.findPersonsByName = function(req,res){
+
+    var name = req.query.name;
+
+    db.Friends.findOne({username:req.session.username}).
+        populate({path:'friends',match:{name:{'$regex':'' + name,'$options':'i'}}}).
             exec(function(err,data){
-        if (err) {
-            res.send(err.message);
-        } else {
-            //console.log("Found!" + data);
-            res.send(data[0].friends);
-        }
+        res.send(data.friends);
     });
-    //}).sort({name: 1});
+    
 }
 
 // Add new user
@@ -113,7 +121,7 @@ exports.loginFriend = function(req,res){
             res.status(502).send({status:err.message});
             
         }else{
-            console.log(data);
+            //console.log(data);
             //=< 0 means wrong username or password
             if(data){
                 req.session.username = data.username;
@@ -132,9 +140,9 @@ exports.getFriendsByUsername = function (req, res) {
     //var uname = req.params.username.split("=")[1];
     db.Friends.findOne({username: req.session.username}).
         populate('friends').exec(function (err, data) {
-        console.log(err);
+        //console.log(err);
         if (data) {
-            console.log("Here: " + data.friends);
+            //console.log("Here: " + data.friends);
             res.send(data.friends); 
         } else {
             res.redirect('/');

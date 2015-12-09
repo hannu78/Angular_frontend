@@ -1,5 +1,6 @@
 main_module.factory('loginFactory', function ($resource) {
     var factory = {};
+    var username ="";
     
     // This function can be called from any controller using this factory
     factory.startLogin = function (data) {

@@ -1,13 +1,66 @@
-main_module.factory('friendDataFactory', function ($resource) {
-    var factory = {};
+main_module.factory('friendDataFactory', function ($resource,$http) {
+    
     // Friend information is cached to array
+    
+    var factory = {};
+    factory.selected_id = null;
+    
     factory.friendsArray = [];
     
-    factory.getFriendData = function() {
- 
-        var response = $resource('/friends', {}, {'get':{method:'GET'}});
-        // Wait for response from backend
-        return response.query().$promise;
+    factory.getFriendData = function(callbackFunc){
+        
+        if(factory.friendsArray.length === 0){
+            var resource = $resource('/friends',{},{'get':{method:'GET'}});
+            resource.query().$promise.then(function(data){
+                
+              factory.friendsArray = data;
+              callbackFunc(factory.friendsArray);    
+                
+            },function(error){
+                
+                factory.friendsArray = [];
+                callbackFunc(factory.friendsArray);
+            });
+        }
+        else{
+            
+            callbackFunc(factory.friendsArray);
+        }
     }
+    factory.getSelectedFriend = function(){
+        
+        for(var i = 0; i < factory.friendsArray.length; i++){
+            
+            if(factory.friendsArray[i]._id === factory.selected_id){
+                
+                return factory.friendsArray[i];
+            }
+        }
+        
+    }
+    factory.updateData = function(data){
+        
+        var resource = $resource('/persons',{},{'put':{method:'PUT'}});
+        return resource.put(data).$promise;
+    }
+    
+    factory.deleteData = function(data){
+        $http.defaults.headers.common['content-type'] = 'application/json'; 
+        var resource = $resource('/persons',{},{'delete':{method:'DELETE'}});
+        return resource.delete(data).$promise;
+    }
+    
+    factory.addData = function(data){
+        
+        var resource = $resource('/persons',{},{'post':{method:'POST'}});
+        return resource.post(data).$promise;
+    }
+    
+    factory.search = function(term){
+        
+        var resource = $resource('/persons/search/',{name:term},{'get':{method:'GET'}});
+        return resource.query().$promise;
+    }
+    
     return factory;
 });

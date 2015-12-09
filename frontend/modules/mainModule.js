@@ -6,10 +6,19 @@ var main_module = angular.module('main_module', ['ngRoute', 'ngResource', 'flash
 // Configuration usually includes a router for views.
 main_module.config(function ($routeProvider) {
     $routeProvider.when('/', {
-        templateUrl: 'partial_login.html',
+        templateUrl: 'partialLoginView.html',
         controller: 'controllerLogin'
     }).when('/list', {
         templateUrl: 'partialDataView.html',
         controller: 'friendDataController'
+    }).when('/add', {
+        templateUrl: "partialAddView.html",
+        controller: 'addController'
+    }).when('/edit', {
+        templateUrl: "partialEditView.html",
+        controller: "editController"
+    }).when('/delete', {
+        templateUrl: "partialDeleteView.html",
+        controller: "deleteController"
     });
 });

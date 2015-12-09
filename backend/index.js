@@ -1,9 +1,9 @@
-//Ladataan express muuttujaan
+//Load node modules
 var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
-// load express-session to create a client session to server
 var session = require("express-session");
+var uuid = require('uuid');
 //Start express
 var app = express();
 
@@ -11,13 +11,11 @@ var queries = require("./modules/queries");
 var person = require("./modules/person");
 var user = require("./modules/user");
 var database = require("./modules/database");
-// uuid is used for cookie information
-var uuid = require('uuid');
 //====================MIDDLEWARES==================================================
 // express session middleware
 app.use(session({
     secret: uuid.v1(),
-    cookie: {maxAge: 600000},
+    cookie: {maxAge: 3600000},
     resave: true,
     saveUninitialized: true
 }));

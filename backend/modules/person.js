@@ -7,8 +7,8 @@ var router = express.Router();
 router.get('/', function (req, res) {
     db.getAllPersons(req, res);
 });
-router.get('/:name/:username', function (req, res) {
-    db.searchByName(req, res);
+router.get('/search', function (req, res) {
+    db.findPersonsByName(req, res);
 });
 //router.get('/:username', function (req, res) {
 //    db.getAllPersons(req, res);
@@ -22,7 +22,7 @@ router.put('/', function (req, res) {
     db.updatePerson(req, res);
 });
 // DELETE-requestin käsittely /persons-kontekstissa
-router.delete('/:id', function (req, res) {
+router.delete('/', function (req, res) {
     db.deletePerson(req, res);
 });
 

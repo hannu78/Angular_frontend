@@ -1,9 +1,9 @@
 /* Use element selector to select all p elements for this style */
 
-p{
+/*p{
     color:blue;
     font-size: 20px;
-}
+}*/
 
  div {
     color:darkblue
@@ -44,6 +44,18 @@ input {
     background-color: skyblue;
     padding: 10px;
 }
+
+.table_container
+{
+    
+    border: 3px solid black;
+    border-radius: 5px;
+    width: 70%;
+    margin: auto;
+    padding: 12px;
+    background-color: lightblue;
+}
+
 
 # Selectors
 # div ja sen 1. child

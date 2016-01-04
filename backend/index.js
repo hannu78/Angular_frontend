@@ -11,6 +11,9 @@ var queries = require("./modules/queries");
 var person = require("./modules/person");
 var user = require("./modules/user");
 var database = require("./modules/database");
+
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002);
+app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
 //====================MIDDLEWARES==================================================
 // express session middleware
 app.use(session({
@@ -41,6 +44,15 @@ app.use('/friends', user);
 app.get('/logout', function (req, res) {
     req.session.destroy();
     res.redirect('/');
+});
+// This router checks whether client is logged in or not
+app.get('/isLogged', function(req, res){
+    // User is logged in if session contains username attribute
+    if (req.session.username) {
+        res.status(200).send(['Ok']);
+    } else {
+        res.status(401).send(['Unauthorized']);
+    }
 });
 //Make express to listen to port 3000
 app.listen(3000);

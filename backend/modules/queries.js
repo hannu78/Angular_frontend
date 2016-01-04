@@ -140,9 +140,9 @@ exports.getFriendsByUsername = function (req, res) {
     //var uname = req.params.username.split("=")[1];
     db.Friends.findOne({username: req.session.username}).
         populate('friends').exec(function (err, data) {
-        //console.log(err);
+        console.log(err);
         if (data) {
-            //console.log("Here: " + data.friends);
+            console.log("Here: " + data.friends);
             res.send(data.friends); 
         } else {
             res.redirect('/');

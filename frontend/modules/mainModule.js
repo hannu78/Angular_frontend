@@ -2,6 +2,26 @@
 // the array, contains the dependencies to other angular modules
 var main_module = angular.module('main_module', ['ngRoute', 'ngResource', 'flash']);
 
+function loginRequired($q, $resource, $location) {
+    // Create a promise
+    var deferred = $q.defer();
+    $resource('/isLogged').query().$promise.then(function success(){
+        //Mark the promise as resolved
+        deferred.resolve();
+        return deferred;
+    }, function fail(){
+        deferred.reject();
+        //Go back to root context
+        $location.path('/');
+        //$location.path('/').replace();
+        return deferred;
+    });
+}
+
+//main_module.run(function($http) {
+//    $http.defaults.headers.common['cache-control'] = 'private', 'no-store', 'must-revalidate';
+//});
+
 // Create basic configuration for angular app.
 // Configuration usually includes a router for views.
 main_module.config(function ($routeProvider) {
@@ -10,15 +30,19 @@ main_module.config(function ($routeProvider) {
         controller: 'controllerLogin'
     }).when('/list', {
         templateUrl: 'partialDataView.html',
-        controller: 'friendDataController'
+        controller: 'friendDataController',
+        resolve: {loginRequired: loginRequired}
     }).when('/add', {
         templateUrl: "partialAddView.html",
-        controller: 'addController'
+        controller: 'addController',
+        resolve: {loginRequired: loginRequired}
     }).when('/edit', {
         templateUrl: "partialEditView.html",
-        controller: "editController"
+        controller: "editController",
+        resolve: {loginRequired: loginRequired}
     }).when('/delete', {
         templateUrl: "partialDeleteView.html",
-        controller: "deleteController"
+        controller: "deleteController",
+        resolve: {loginRequired: loginRequired}
     });
 });

@@ -19,7 +19,10 @@ main_module.controller('controllerLogin', function ($scope, loginFactory, $locat
            // Code inside this block will be called when success response from server 
            // is received
             console.log("Success!");
+            console.log(data.secret);
             loginFactory.username = $scope.user;
+            //Store jsonwebtoken
+            sessionStorage['token'] = data.secret;
             // location.path does not work for me, so location.path('/list').replace() is needed here
             // See http://stackoverflow.com/questions/11784656/angularjs-location-not-changing-the-path
             $location.path('/list').replace();

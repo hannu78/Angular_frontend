@@ -12,6 +12,7 @@ main_module.controller('friendDataController', function ($scope, friendDataFacto
     function dataCallback(dataArray){
         
         $scope.friendData = dataArray;
+        $scope.user = loginFactory.username;
     }
     
     $scope.search = function(){

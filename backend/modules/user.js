@@ -10,6 +10,7 @@
 
 var express = require("express");
 var db = require("./queries");
+var mysql = require("./mysql");
 
 var router = express.Router();
 
@@ -23,7 +24,8 @@ router.get("/", function (req, res) {
 // Tämä router käsittelee login-requestit
 router.post("/login", function (req, res) {
     //console.log("Router toimii!");
-    db.loginFriend(req, res);
+   //db.loginFriend(req, res);
+    mysql.loginMySqlProc(req, res);
 });
 // Tämä router käsittelee register-requestit
 router.post("/register", function (req, res) {

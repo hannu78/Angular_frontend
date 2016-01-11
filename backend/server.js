@@ -25,6 +25,7 @@ var queries = require("./modules/queries");
 var person = require("./modules/person");
 var user = require("./modules/user");
 var database = require("./modules/database");
+var mysql = require("./modules/mysql");
 
 //node service settings
 app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3000);

@@ -19,7 +19,7 @@ main_module.controller('controllerLogin', function ($scope, loginFactory, $locat
            // Code inside this block will be called when success response from server 
            // is received
             console.log("Success!");
-            console.log(data.secret);
+            //console.log(data.secret);
             loginFactory.username = $scope.user;
             //Store jsonwebtoken
             sessionStorage['token'] = data.secret;

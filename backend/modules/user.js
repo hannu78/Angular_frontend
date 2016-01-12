@@ -17,7 +17,8 @@ var router = express.Router();
 // GET-requestien käsittely /friends-kontekstissa
 router.get("/", function (req, res) {
    // console.log("Here!");
-    db.getFriendsByUsername(req, res);
+    //db.getFriendsByUsername(req, res);
+    mysql.getFriendsForUser(req, res);
 });
 
 // POST-requestien käsittely /friends-kontekstissa
@@ -29,7 +30,8 @@ router.post("/login", function (req, res) {
 });
 // Tämä router käsittelee register-requestit
 router.post("/register", function (req, res) {
-    db.registerFriend(req, res);
+    //db.registerFriend(req, res);
+    mysql.registerMySql(req, res);
 });
 
 module.exports = router;

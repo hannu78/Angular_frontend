@@ -8,13 +8,11 @@ main_module.factory('friendDataFactory', function ($resource,$http) {
     factory.friendsArray = [];
     
     factory.getFriendData = function(callbackFunc){
-        
         if(factory.friendsArray.length === 0){
             //Set custom header in a request like this
             $http.defaults.headers.common['x-access-token'] = sessionStorage['token'];
             var resource = $resource('/friends',{},{'get':{method:'GET'}});
             resource.query().$promise.then(function(data){
-                
               factory.friendsArray = data;
               callbackFunc(factory.friendsArray);    
                 
@@ -25,7 +23,6 @@ main_module.factory('friendDataFactory', function ($resource,$http) {
             });
         }
         else{
-            
             callbackFunc(factory.friendsArray);
         }
     }

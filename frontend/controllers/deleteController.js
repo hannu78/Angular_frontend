@@ -20,7 +20,7 @@ main_module.controller('deleteController',function($scope,friendDataFactory,Flas
             var temp_index = jQuery.inArray(id, $scope.deleteArray);
             $scope.deleteArray.splice(temp_index,1);
         }
-        //console.log($scope.deleteArray);
+        console.log($scope.deleteArray);
     }
     
     //This is called when delete button is pressed

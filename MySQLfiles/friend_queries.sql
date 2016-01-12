@@ -9,5 +9,13 @@ SELECT user.username, friend.friend_name, friend.friend_address, friend.friend_a
 /*Call a stored procedure*/
 CALL getAllUsers();
 CALL getLoginInfo("poju", "pp");
+CALL getFriendsByUsername("poju");
 CALL getFriendsByUsername("epeli");
 CALL getFriendsByUserid (3);
+CALL getIdByUsername("poju");
+CALL searchFriendByName("Matti");
+CALL getFriendIdByName("Matti Meikäläinen");
+
+SELECT * FROM friend WHERE name LIKE CONCAT('%', "Matti", '%');
+
+UPDATE friend SET email="TBD" WHERE name="Matti Meikäläinen";

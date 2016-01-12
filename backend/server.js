@@ -61,7 +61,7 @@ app.use(function (req, res, next) {
                return res.status(401).send;
            } else {
                req.decoded = decoded;
-               console.log(req.decoded);
+               //console.log(req.decoded);
            } 
         });
     } else {

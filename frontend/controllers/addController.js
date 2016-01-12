@@ -16,6 +16,7 @@ main_module.controller("addController", function ($scope,$location,friendDataFac
                 $scope.name = "";
                 $scope.address = "";
                 $scope.age = "";
+                $scope.email = "";
                 $('#save').attr("disabled", false);
             } else {
                 Flash.create('danger', 'Cannot add people without name, quitting.', 'custom-class');

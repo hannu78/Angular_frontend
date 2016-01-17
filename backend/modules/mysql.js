@@ -6,7 +6,7 @@ var server = require('../server');
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: 'halikannu-2015',
     database: 'friends_schema'
 });
 
@@ -47,7 +47,7 @@ exports.loginMySqlProc = function (req, res) {
     });
 }
 
-exports.getFriendsForUser = function (req, res) {
+exports.getFriendsForUserMySQL = function (req, res) {
     connection.query('CALL getFriendsByUsername(?)',[req.session.username], function ( error, results, fields) {
         if (results[0].length > 0 ) {
             data = results[0];

@@ -18,7 +18,7 @@ var router = express.Router();
 router.get("/", function (req, res) {
    // console.log("Here!");
     //db.getFriendsByUsername(req, res);
-    mysql.getFriendsForUser(req, res);
+    mysql.getFriendsForUserMySQL(req, res);
 });
 
 // POST-requestien käsittely /friends-kontekstissa

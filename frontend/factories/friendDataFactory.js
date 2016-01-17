@@ -31,7 +31,6 @@ main_module.factory('friendDataFactory', function ($resource,$http) {
         for(var i = 0; i < factory.friendsArray.length; i++){
             
             if(factory.friendsArray[i]._id === factory.selected_id){
-                
                 return factory.friendsArray[i];
             }
         }

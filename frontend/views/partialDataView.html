@@ -1,29 +1,40 @@
-<div class= "table_container">
-    <h1>Your friends</h1>
-    <p>Search friends</p>
-    <input type="search" class="form-control" value="Search" ng-model='search_term'/><br/>
-    <button class="btn btn-default" value="Search" ng-click='search()'>
-            Search
-    </button>
-    <p>To edit or delete entries, click a row.</p>
-    <table class = 'table table-hover'>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Age</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat='person in friendData' ng-click='rowClicked(person._id)'>
-                <td>{{person.name}}</td>
-                <td>{{person.address}}</td>
-                <td>{{person.age}}</td>
-                <td>{{person.email}}</td>
-            </tr>
-        </tbody>
-    </table>
+<ng-include src="'navbar.html'"></ng-include>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class= "table_container">
+                <h1>Your friends</h1>
+                <p>Search friends</p>
+                <input type="search" class="form-control" value="Search" ng-model='search_term'/><br/>
+                <button class="btn btn-default" value="Search" ng-click='search()'>
+                        Search
+                </button>
+                <p>To edit or delete entries, click a row.</p>
+
+                <table class = 'table table-hover'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Age</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat='person in friendData' ng-click='rowClicked(person._id)'>
+                            <td>{{person.name}}</td>
+                            <td>{{person.address}}</td>
+                            <td>{{person.age}}</td>
+                            <td>{{person.email}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        <div class="col-sm-6">
+            <div class="jumbotron"><h1>This is jumbotron</h1></div>
+        </div>
+    </div>
 </div>
 <br/><br/>
 

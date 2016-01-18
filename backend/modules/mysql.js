@@ -6,7 +6,7 @@ var server = require('../server');
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'halikannu-2015',
+    password: 'root',
     database: 'friends_schema'
 });
 
@@ -31,7 +31,7 @@ exports.loginMySql = function (req, res) {
 exports.loginMySqlProc = function (req, res) {
     connection.query('CALL getLoginInfo(?, ?)', [req.body.username, req.body.password], function (error, results, fields) {
         if (error) {
-            res.status(502).send({status: err_message});
+            res.status(502).send({status: error});
         } else {
             var test = results[0];
             if (test.length > 0) {
@@ -60,7 +60,6 @@ exports.getFriendsForUserMySQL = function (req, res) {
 }
 
 exports.registerMySql = function (req, res) {
-    //console.log(req.body);
     connection.query('CALL addNewUser(?, ?)', [req.body.username, req.body.password], function ( error, results, fields){
         if (error) {
             res.status(502).send({status: "Registration failed. Please use another username."});
@@ -118,12 +117,10 @@ exports.deleteUserMysql = function (req, res) {
 }
 
 exports.updateFriendMysql = function (req, res) {
-    console.log("Dataa: " + req.body.name + " ja: " + req.body.id);
     connection.query('CALL upDateFriendInfo(?, ?, ?, ?, ?)', [req.body.id, req.body.name, req.body.address, req.body.age, req.body.email], function (error, results, fields) {
          if(error){
                 res.status(500).json({message:'Fail'});
             } else {
-                console.log("HereXXX");
                 res.status(200).json({message: 'Data updated'});
             }
     });

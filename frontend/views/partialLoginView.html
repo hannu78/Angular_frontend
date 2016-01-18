@@ -7,10 +7,20 @@
 </head>
 
 <p class = "error"></p>
-<form class='login_container'>
-    <input class="form-control" type = "text" placeholder = "username" ng-model = "user"><br/>
-    <input class="form-control" type = "password" placeholder = "password" ng-model = "pass"><br/>
-    <input class="btn btn-default" type = "button" value = "Login" ng-click = "loginClicked()">
-    <input class="btn btn-default" type = "button" value = "Register" ng-click = "registerClicked()">
-</form>
-<div flash-message="5000" ></div>
+<!-- Bootstrap grid layout Rule #1: Everything must be inside a container class-->
+<div class="container">
+    <!-- Bootstrap grid layout Rule #2: Every column must be inside a row-->
+    <div class="row">
+        <!-- Bootstrap grid layout Rule #3: Columns are defined inside a row, sum of col- directives should always be 12-->
+        <div class="col-sm-3 col-md-2" style="background-color:green">Column1</div>
+        <div class="col-sm-9 col-md-10 visible-lg" style="background-color:red">Column2</div>
+    </div>
+    <form class='login_container'>
+        <h3>Login to Friends application</h3>
+        <input class="form-control" type = "text" placeholder = "username" ng-model = "user"><br/>
+        <input class="form-control" type = "password" placeholder = "password" ng-model = "pass"><br/>
+        <input class="btn btn-default" type = "button" value = "Login" ng-click = "loginClicked()">
+        <input class="btn btn-default" type = "button" value = "Register" ng-click = "registerClicked()">
+    </form>
+    <div flash-message="5000" ></div>
+</div>

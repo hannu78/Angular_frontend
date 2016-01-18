@@ -9,7 +9,7 @@ main_module.controller("addController", function ($scope,$location,friendDataFac
             email: $scope.email
         };
         
-        friendDataFactory.addData(temp).then(function(data){
+        friendDataFactory.insertData(temp).then(function(data){
             if( temp.name ) {
                 friendDataFactory.friendsArray.push(data.data);
                 Flash.create('success', 'New friend added succesfully!', 'custom-class');

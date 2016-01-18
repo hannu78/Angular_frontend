@@ -1,3 +1,4 @@
+<ng-include src="'navbar.html'"></ng-include>
 <form class='loginForm'>
     <h3>Edit and save information</h3>
     <!--ng-model directive is the way to transfer data to controller -->
@@ -6,4 +7,5 @@
     <input class="form-control" type="text" ng-model='age'><br/>
     <input class="form-control" type="text" ng-model='email'><br/>
     <input class="btn btn-default" type="button" value="Save" ng-click='savePerson()'>
+    <input id="back" class="btn btn-default" type="button" value="Back" ng-click="go('/list')">
 </form>

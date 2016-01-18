@@ -2,9 +2,9 @@ main_module.controller('editController',function($scope,friendDataFactory,$locat
     
     var selectedFriend = friendDataFactory.getSelectedFriend();
     
-    console.log("here: " + selectedFriend._id + " & " +selectedFriend.name);
+    console.log("here: " + selectedFriend.id + " & " +selectedFriend.name);
     
-    $scope.id = selectedFriend._id;
+    $scope.id = selectedFriend.id;
     $scope.name = selectedFriend.name;
     $scope.address = selectedFriend.address;
     $scope.age = selectedFriend.age;

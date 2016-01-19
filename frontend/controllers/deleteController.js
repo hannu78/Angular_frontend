@@ -2,6 +2,11 @@ main_module.controller('deleteController',function($scope,friendDataFactory,Flas
     
     $scope.deleteArray = [];
     
+    $scope.navbarData = {
+           urls: ['/logout', '#/delete', '#/add', 'http://www.kaleva.fi' ],
+           texts: ['Logout', 'Delete', 'Add', 'News']
+       };
+    
     friendDataFactory.getFriendData(function(dataArray){
         
         $scope.friendData = dataArray;

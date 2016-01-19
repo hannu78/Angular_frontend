@@ -45,6 +45,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 // Define middleware for static (.html, .css, .js) files that are loaded by browser
 // when parsing index.html
 app.use('/', express.static(path.join(__dirname, '../frontend/views')));
+app.use('/frontend/directives',express.static(path.join(__dirname, '../frontend/directives')));
 app.use('/frontend/css', express.static(path.join(__dirname, '../frontend/css')));
 app.use('/frontend/lib', express.static(path.join(__dirname, '../frontend/lib')));
 app.use('/frontend/modules', express.static(path.join(__dirname, '../frontend/modules')));

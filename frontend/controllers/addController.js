@@ -1,6 +1,11 @@
 main_module.controller("addController", function ($scope,$location,friendDataFactory,Flash) {
    $scope.savePerson = function(){
         $('#save').attr("disabled", true);
+       
+       $scope.navbarData = {
+           urls: ['/logout', '#/delete', '#/add', 'http://www.kaleva.fi' ],
+           texts: ['Logout', 'Delete', 'Add', 'News']
+       };
         var temp = {
             
             name: $scope.name,

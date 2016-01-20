@@ -3,8 +3,8 @@ main_module.controller("addController", function ($scope,$location,friendDataFac
         $('#save').attr("disabled", true);
        
        $scope.navbarData = {
-           urls: ['/logout', '#/delete', '#/add', 'http://www.kaleva.fi' ],
-           texts: ['Logout', 'Delete', 'Add', 'News']
+           urls:['/logout','#/delete','#/insert','#/location','http://www.kaleva.fi'],
+		   texts:['Logout','Delete','Insert','Your Location','News']
        };
         var temp = {
             

@@ -5,9 +5,9 @@ main_module.controller('editController',function($scope,friendDataFactory,$locat
     console.log("here: " + selectedFriend.id + " & " +selectedFriend.name);
     
     $scope.navbarData = {
-           urls: ['/logout', '#/delete', '#/add', 'http://www.kaleva.fi' ],
-           texts: ['Logout', 'Delete', 'Add', 'News']
-       };
+           urls:['/logout','#/delete','#/insert','#/location','http://www.kaleva.fi'],
+		   texts:['Logout','Delete','Insert','Your Location','News']
+    };
     
     $scope.id = selectedFriend.id;
     $scope.name = selectedFriend.name;

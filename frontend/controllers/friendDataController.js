@@ -5,9 +5,9 @@ main_module.controller('friendDataController', function ($scope, friendDataFacto
     $scope.temp = ['Heikki Hela', 'Risto Mattila', 'Juha Sipilä', 'Teuvo Hakkarainen'];
     
     $scope.navbarData = {
-           urls: ['/logout', '#/delete', '#/add', 'http://www.kaleva.fi' ],
-           texts: ['Logout', 'Delete', 'Add', 'News']
-       };
+           urls:['/logout','#/delete','#/insert','#/location', '#/chat', 'http://www.kaleva.fi'],
+		   texts:['Logout','Delete','Insert','Your Location', 'Chat', 'News']
+    };
     
     friendDataFactory.getFriendData(dataCallback);
     

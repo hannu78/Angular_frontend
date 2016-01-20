@@ -6,15 +6,15 @@ main_module.directive('navbarDirective',function(){
         navbarData: '=',
     };
     
-    /*directive.link = function(scope,elem,attrs){
+    directive.link = function(scope,elem,attrs){
 		
-	   $('a').first.addClass('active');
+	  /* $('a').first.addClass('active');
 	   $('a').click(function(){
 		  console.log('Link clicked');
 		  if(!this.hasClass('active'))
                 this.addClass('active');
-	   });
-	}*/
+	   });*/
+	}
 	
     
     return directive;

@@ -14,7 +14,7 @@ main_module.directive('ofExample',function(){
     directive.restrict = 'AEC';
     
     //Create isolated scope for our directive
-    //From this point onwards, our directive CANNO use parent scope anymore
+    //From this point onwards, our directive CANNOT use parent scope anymore
     directive.scope = {
         //Text binding
         name: '@myname',

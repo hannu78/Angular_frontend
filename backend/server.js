@@ -92,5 +92,12 @@ app.get('/isLogged', function(req, res){
 https.createServer(options, app).listen(app.get('port'), app.get('ip'), function() {
     console.log("Express server started");
 });
+//Server side sockect setup. Note that there's ONLY one socket in server to accept ALL
+//client connections. Socket setup has to be done after https server creation.
+var io = require('socket.io')(https);
+//Listen and wait for "connection" message from client
+io.on('connection', function(socket) {
+    console.log('user connected');
+})
 //Make express to listen to port 3000
 //app.listen(3000);

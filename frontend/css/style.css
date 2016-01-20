@@ -56,6 +56,14 @@ input {
     background-color: lightblue;
 }
 
+.map_container{
+	
+	width: 518px;
+	margin: 30px auto;
+	padding: 8px;
+	border: 2px solid gray;
+	border-radius: 5px;
+}
 
 # Selectors
 # div ja sen 1. child
